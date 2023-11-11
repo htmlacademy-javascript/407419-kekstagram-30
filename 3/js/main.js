@@ -48,10 +48,8 @@ const getRandomIdFromRangeGenerator = (min, max) => {
 const getIdPhoto = getRandomIdFromRangeGenerator(MIN_INDEX,MAX_INDEX);
 //Получить url фотографии
 const getUrlPhoto = getRandomIdFromRangeGenerator(MIN_INDEX,MAX_INDEX);
-//Получить количество лайков
-const getLikes = getRandomInteger ;
 //Создаём индекс объекта массива коментариев
-const idCommint = getRandomIdFromRangeGenerator(30,999);
+const idComment = getRandomIdFromRangeGenerator(30,999);
 /**
  * Функция которая создаёт описание фотографии
  * @param {int} - Минимальный шндекс массива
@@ -77,7 +75,6 @@ const getMessage = function(min, max){
   }
   return string ;
 };
-getMessage(1, 2);
 
 /**
  * Функцию которая создаёт объект коментариев: id, avatar, message, name.
@@ -85,9 +82,9 @@ getMessage(1, 2);
  */
 const createObjectMessage = function(){
   return {
-    id: idCommint(),
+    id: idComment(),
     avatar: `img/avatar-${getRandomInteger(MIN_AVATAR,MAX_AVATAR)}.svg`,
-    message: getMessage(),
+    message: getMessage(1,2),
     name: names[getRandomInteger(0, names.length - 1)],
   };
 };
@@ -99,7 +96,6 @@ const createObjectMessage = function(){
 const createArrayComments = function (count) {
   return Array.from({length: count}, createObjectMessage);
 };
-createArrayComments(getRandomInteger(0,30));
 /**
  * Функция которая создаёт объект с id, url, likes, description, comments
  * @returns Возвращает объект
@@ -109,8 +105,8 @@ const createPhoto = function () {
     id: getIdPhoto(),
     url: `photos/${getUrlPhoto(MIN_INDEX, MAX_INDEX)}.jpg`,
     description: getDescription(0, descriptions.length - 1),
-    likes: getLikes(MIN_LIKES, MAX_LIKES),
-    comments: createArrayComments,
+    likes: getRandomIdFromRangeGenerator(MIN_LIKES, MAX_LIKES),
+    comments: createArrayComments(getRandomInteger(0,30)),
   };
 };
 
