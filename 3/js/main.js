@@ -27,7 +27,7 @@ const getRandomInteger = function (a, b) {
  * @param {int} - Максимальное число из интервала чисел
  * @returns {int} Возвращает случайное число из интервала чисел
  */
-const getRandomIdFromRangeGenerator = (min, max) => {
+const getRandomIdFromRangeGenerator = function (min, max) {
   const previousValues = [];
 
   return function () {
@@ -105,11 +105,10 @@ const createPhoto = function () {
     id: getIdPhoto(),
     url: `photos/${getUrlPhoto(MIN_INDEX, MAX_INDEX)}.jpg`,
     description: getDescription(0, descriptions.length - 1),
-    likes: getRandomIdFromRangeGenerator(MIN_LIKES, MAX_LIKES),
+    likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
     comments: createArrayComments(getRandomInteger(0,30)),
   };
 };
-
 /**
  * Функция создаёт массив из 25 объектов Каждый объект массива — описание фотографии, опубликованной пользователем.
  * @param {int} count - количестрво объектов для генерации
